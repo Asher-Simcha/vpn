@@ -1,0 +1,62 @@
+#/bin/bash
+# Author: Asher Simcha
+# Date 03-29-2019
+# Description: do all functions with vpn shortcut, this is practice for me
+
+# Legal notice:
+# This program is free software: you can redistribute it and/or modify it.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+
+ALL='all'
+HELP='help'
+LIST='list'
+STATUS='status'
+STOP='stop'
+DOWN='down'
+HALT='halt'
+UP='up'
+
+if [ $# -eq 1 ]; then
+	#echo "Your input was: "
+	#echo $1
+	#echo ""
+	if [ $1 = $ALL ]; then
+# 		echo "inside all"
+		expressvpn list all
+	elif [ $1 = $LIST ]; then
+# 		echo "inside list"
+		expressvpn list
+	elif [ $1 = $UP ]; then
+# 		echo "inside up"
+		expressvpn connect smart
+	elif [ $1 = $STOP ]; then
+		expressvpn disconnect
+	elif [ $1 = $DOWN ]; then
+		expressvpn disconnect
+	elif [ $1 = $HALT ]; then
+		expressvpn disconnect
+	elif [ $1 = $STATUS ]; then
+		expressvpn status
+	elif [ $1 = $HELP ]; then
+		echo "To Use this program type the following commands"
+		echo "vpn list		# This list the most common VPNs available"
+		echo "vpn all		# This list all the available VPNs"
+		echo "vpn up		# This is the smart connect and the default way"
+		echo "vpn up ussf	# This will connect you to the VPN in San Francisco"
+		echo "vpn up mx		# This will connect you to the VPN in Mexico"
+		echo "vpn stop		# This will stop the VPN"
+	fi
+elif [ $# -eq 2 ]; then
+	if [ $1 = $UP ]; then
+# 		echo "inside 2 up"
+# 		echo "connect to:"
+# 		echo $2
+# 		echo ""
+		expressvpn connect $2
+	fi
+else
+	#echo "status"
+	expressvpn status
+fi
